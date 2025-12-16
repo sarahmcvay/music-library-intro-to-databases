@@ -1,4 +1,4 @@
-
+<!-- cmd + shift + v to open the diagram preview -->
 ```mermaid
 sequenceDiagram
     participant t as terminal
