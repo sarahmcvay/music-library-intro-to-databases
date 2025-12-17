@@ -18,3 +18,14 @@ def test_get_all_album_records(db_connection): # See conftest.py to learn what `
         Album('Waterloo', 1974, 2),
         Album('Super Trouper', 1980, 2),
         ]
+
+"""
+When we call the find method with an id
+We get the single record with that id
+"""
+def test_find_single_item(db_connection):
+    db_connection.seed("seeds/music_library.sql")
+    repository = AlbumRepository(db_connection)
+    
+    album = repository.find(3)
+    assert album == Album("Waterloo", 1974, 2)
