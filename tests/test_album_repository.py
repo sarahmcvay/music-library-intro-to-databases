@@ -29,3 +29,17 @@ def test_find_single_item(db_connection):
     
     album = repository.find(3)
     assert album == Album("Waterloo", 1974, 2)
+
+"""
+When we call AlbumRepository#create
+We get a new record in the database.
+"""
+def test_create_record(db_connection):
+    db_connection.seed("seeds/music_library.sql")
+    repository = AlbumRepository(db_connection)
+
+    new_album = Album("Another Mix", 2025, 1)
+    repository.create(new_album)
+
+    albums = repository.all()
+    assert albums[-1] == Album("Another Mix", 2025, 1)
