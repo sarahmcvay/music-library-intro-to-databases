@@ -43,3 +43,17 @@ def test_create_record(db_connection):
 
     albums = repository.all()
     assert albums[-1] == Album("Another Mix", 2025, 1)
+
+"""
+When we call find album by artist it returns correctly
+"""
+def test_find_album_by_artist(db_connection):
+    db_connection.seed("seeds/music_library.sql")
+    repository = AlbumRepository(db_connection)
+
+    albums = repository.find_by_artist(1)
+    assert albums == [
+        Album("Doolittle", 1989, 1),
+        Album("Surfer Rosa", 1988, 1),
+        Album("Bossanova", 1990, 1)
+    ]

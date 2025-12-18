@@ -42,3 +42,18 @@ class AlbumRepository():
             [album_id]
             )
         return None
+
+    def find_by_artist(self, artist_id):
+        rows = self._connection.execute(
+            "SELECT * FROM albums WHERE artist_id = %s",
+            [artist_id]
+        )
+        albums = []
+        for row in rows: 
+            albums.append(
+                Album(
+                    row["title"], 
+                    row["release_year"], 
+                    row["artist_id"]
+                ))
+        return albums 
